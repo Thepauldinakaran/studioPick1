@@ -1,3 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@keyframes crackle {
+  0% {
+    opacity: 0.2;
+    width: 5px;
+  }
+  20% {
+    opacity: 1;
+    width: 10px;
+  }
+  40% {
+    opacity: 0.3;
+    width: 8px;
+  }
+  60% {
+    opacity: 0.9;
+    width: 12px;
+  }
+  80% {
+    opacity: 0.4;
+    width: 9px;
+  }
+  100% {
+    opacity: 1;
+    width: 100%;
+  }
+}
+
+@keyframes goldGlow {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 100%;
+  }
+}
+
+.animate-gold-glow {
+  background-image: linear-gradient(90deg, #ffd700, #ffc107, #fffacd);
+  background-size: 200% auto;
+  animation: goldGlow 2s linear infinite alternate, crackle 0.8s ease-in-out;
+}

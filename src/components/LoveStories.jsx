@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const couples = [
   {
     name: "Couple1 & Couple1",
-    location: "LAKELAND",
+    location: "MADURAI",
     category: "WEDDING",
     image: "images/c1.jpg",
     gallery: [
@@ -21,8 +21,8 @@ const couples = [
   },
   {
     name: "Couple2 & Couple2",
-    location: "IRVINGTON",
-    category: "ENGAGEMENT",
+    location: "MADURAI",
+    category: "OUTDOOR",
     image: "images/c2.jpg",
     gallery: [
       "images/b1.jpg",
@@ -39,8 +39,8 @@ const couples = [
   },
   {
     name: "Couple3 & Couple3",
-    location: "IRVINGTON",
-    category: "ENGAGEMENT",
+    location: "MADURAI",
+    category: "OUTDOOR",
     image: "images/c3.jpg",
     gallery: [
       "images/a1.jpg",
@@ -59,7 +59,7 @@ const couples = [
   },
   {
     name: "Couple4 & Couple4",
-    location: "IRVINGTON",
+    location: "MADURAI",
     category: "ENGAGEMENT",
     image: "images/c4.jpg",
     gallery: [
@@ -78,7 +78,7 @@ const couples = [
   },
   {
     name: "Couple5 & Couple5",
-    location: "IRVINGTON",
+    location: "MADURAI",
     category: "ENGAGEMENT",
     image: "images/c5.jpg",
     gallery: [
@@ -127,12 +127,15 @@ const LoveStories = () => {
   return (
     <div
       id="gallery"
-      className="flex flex-col items-center justify-start w-full min-h-screen bg-white px-6 py-20 lg:px-12 gap-8 2xl:p-32"
+      className="flex flex-col items-center justify-start w-full min-h-screen 
+      bg-gradient-to-r from-[#4A148C] via-[#6A1B9A] to-[#D4AF37] text-white 
+      px-6 py-20 lg:px-12 gap-8 2xl:p-32"
     >
       <div className="w-full flex justify-center">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-serif font-semibold text-center mb-8">
-          Some of the wonderful <em className="italic">love stories</em> I
-          witnessed and had the chance to capture
+        <h2 className="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-heading font-semibold text-center mb-8">
+          Some of the wonderful{" "}
+          <em className="italic text-[#FFD700]">love stories</em> I witnessed
+          and had the chance to capture
         </h2>
       </div>
 
@@ -146,21 +149,21 @@ const LoveStories = () => {
                 onMouseEnter={() => setSelectedImage(couple.image)}
                 onClick={() => setSelectedCouple(couple)}
               >
-                <h3 className="text-3xl md:text-4xl xl:text-5xl font-serif text-gray-900 group-hover:text-[#cfb7b7] mb-2">
+                <h3 className="text-3xl md:text-4xl xl:text-5xl font-subheading text-[#FFFFFF] group-hover:text-[#FFD700] mb-2">
                   {couple.name}
                 </h3>
-                <p className="text-gray-500 text-sm md:text-base group-hover:text-[#cfb7b7] leading-relaxed">
+                <p className="text-[#E5CFF7] text-sm md:text-base group-hover:text-[#F6C453] leading-relaxed">
                   {couple.location} —{" "}
-                  <span className="text-pink-500">{couple.category}</span>
+                  <span className="text-[#FF9EAA]">{couple.category}</span>
                 </p>
-                <div className="border-[0.5px] border-[#cfb7b7] w-full mt-4"></div>
+                <div className="border-[0.5px] border-[#F6C453] w-full mt-4"></div>
               </div>
             ))}
           </div>
         </div>
 
         <div className="hidden xl:flex w-[40%] lg:w-1/2 justify-center">
-          <div className="border-8 border-[#cfb7b7] p-4">
+          <div className="border-8 border-[#FFD700] p-4">
             <img
               src={selectedImage}
               alt="Couple"
@@ -170,10 +173,19 @@ const LoveStories = () => {
         </div>
       </div>
 
+      <motion.div
+        className="absolute top-0 left-0 w-full h-[5px] bg-gradient-to-r from-[#FFD700] via-[#FFAA00] to-[#FFD700] 
+  mt-16 shadow-[0_0_15px_#FFD700] rounded-full"
+        initial={{ width: "0%" }} // Start with 0% width
+        whileInView={{ width: "100%" }} // Expand to 100% width
+        transition={{ duration: 1.8, ease: "easeInOut" }}
+      />
+
       <AnimatePresence>
         {selectedCouple && (
           <motion.div
-            className="fixed inset-0 flex flex-col items-center justify-start bg-[#F8F4F4]/90 z-50 p-6 md:p-10 backdrop-blur-md overflow-y-auto w-full"
+            className="fixed inset-0 flex flex-col items-center justify-start bg-[#3D1D5A]/90 z-50 p-6 md:p-10 
+            backdrop-blur-md overflow-y-auto w-full"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
@@ -181,20 +193,21 @@ const LoveStories = () => {
           >
             <button
               onClick={() => setSelectedCouple(null)}
-              className="absolute top-6 right-6 text-gray-700 hover:text-black text-4xl"
+              className="absolute top-4 right-6 sm:top-6 sm:right-6 text-[#FFD700] hover:text-white 
+        text-3xl sm:text-4xl  sm:mt-0"
             >
               &times;
             </button>
-            <h2 className="text-2xl md:text-3xl xl:text-4xl font-serif font-semibold text-gray-900 mb-6">
+            <h2 className="text-2xl md:text-3xl xl:text-4xl font-heading font-semibold text-[#FFD700] mt-10">
               {selectedCouple.name}'s Gallery
             </h2>
-            <div className="columns-3 md:columns-3 gap-2 w-full max-w-6xl space-y-2">
+            <div className="columns-3 mt-6 md:columns-3 gap-2 w-full max-w-6xl space-y-2">
               {selectedCouple.gallery.map((img, index) => (
                 <motion.img
                   key={index}
                   src={img}
                   alt="Gallery"
-                  className="w-full h-auto object-cover shadow-md cursor-pointer"
+                  className="w-full h-auto object-cover shadow-md cursor-pointer border-4 border-[#F6C453]"
                   whileHover={{ scale: 1.05 }}
                   onClick={() => setLightboxImage(img)}
                 />
@@ -203,11 +216,11 @@ const LoveStories = () => {
           </motion.div>
         )}
       </AnimatePresence>
-      {/* //////////////////////////////////////////////////////////////////////////////////////// */}
+
       <AnimatePresence>
         {lightboxImage && (
           <motion.div
-            className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 z-50 p-4"
+            className="fixed inset-0 flex items-center justify-center bg-[rgba(0,0,0,0.85)] z-50 p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -226,7 +239,7 @@ const LoveStories = () => {
             </button>
             <img
               src={lightboxImage}
-              className="max-w-[90%] max-h-[80vh] object-contain rounded-lg"
+              className="max-w-[90%] max-h-[80vh] object-contain rounded-lg border-4 border-[#F6C453]"
               alt="Lightbox"
             />
             <button
