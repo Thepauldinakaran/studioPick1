@@ -125,80 +125,134 @@ const LoveStories = () => {
   };
 
   return (
-    <div
+    <motion.div
       id="gallery"
-      className="flex flex-col items-center justify-start w-full min-h-screen 
-      bg-gradient-to-r from-[#4A148C] via-[#6A1B9A] to-[#D4AF37] text-white 
-      px-6 py-20 lg:px-12 gap-8 2xl:p-32"
+      className="flex w-screen flex-col items-center justify-start min-h-screen 
+        bg-gradient-to-r from-[#FAF3E0] via-[#E5D4C0] to-[#C8A888] text-[#5C3D2E] 
+        px-6 py-20 lg:px-12 gap-8 2xl:p-32 relative"
     >
-      <div className="w-full flex justify-center">
+      {/* Title Animation (Appears when scrolling) */}
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }} // ✅ Animation triggers only when in viewport
+        variants={{
+          hidden: { opacity: 0, y: 50 },
+          visible: {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 1, ease: "easeOut" },
+          },
+        }}
+        className="w-full flex justify-center"
+      >
         <h2 className="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-heading font-semibold text-center mb-8">
           Some of the wonderful{" "}
-          <em className="italic text-[#FFD700]">love stories</em> I witnessed
+          <em className="italic text-[#D4A373]">love stories</em> I witnessed
           and had the chance to capture
         </h2>
-      </div>
+      </motion.div>
 
-      <div className="flex flex-col lg:flex-row items-start justify-center w-full gap-8">
+      {/* Couple List Animation */}
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }} // ✅ Runs only once when scrolling down
+        variants={{
+          hidden: { opacity: 0, y: 50 },
+          visible: {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 1, ease: "easeOut" },
+          },
+        }}
+        className="flex flex-col lg:flex-row items-start justify-center w-full gap-8"
+      >
         <div className="w-full lg:w-[60%] p-3">
           <div className="space-y-6">
             {couples.map((couple, index) => (
-              <div
+              <motion.div
                 key={index}
+                whileHover={{ scale: 1.05 }}
                 className="group cursor-pointer transition-all duration-300 p-3 space-y-2"
                 onMouseEnter={() => setSelectedImage(couple.image)}
                 onClick={() => setSelectedCouple(couple)}
               >
-                <h3 className="text-3xl md:text-4xl xl:text-5xl font-subheading text-[#FFFFFF] group-hover:text-[#FFD700] mb-2">
+                {/* Heading with Hover Effect */}
+                <motion.h3
+                  whileHover={{ color: "#D4A373" }}
+                  className="text-3xl md:text-4xl xl:text-5xl font-subheading text-[#5C3D2E] mb-2"
+                >
                   {couple.name}
-                </h3>
-                <p className="text-[#E5CFF7] text-sm md:text-base group-hover:text-[#F6C453] leading-relaxed">
+                </motion.h3>
+                <p className="text-[#8C6F61] text-sm md:text-base group-hover:text-[#C8A888] leading-relaxed">
                   {couple.location} —{" "}
-                  <span className="text-[#FF9EAA]">{couple.category}</span>
+                  <span className="text-[#D4A373]">{couple.category}</span>
                 </p>
-                <div className="border-[0.5px] border-[#F6C453] w-full mt-4"></div>
-              </div>
+                <div className="border-[0.5px] border-[#C8A888] w-full mt-4"></div>
+              </motion.div>
             ))}
           </div>
         </div>
 
-        <div className="hidden xl:flex w-[40%] lg:w-1/2 justify-center">
-          <div className="border-8 border-[#FFD700] p-4">
-            <img
+        {/* Right Side - Image Preview */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="hidden xl:flex w-[40%] lg:w-1/2 justify-center"
+        >
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            className="border-8 border-[#D4A373] p-4 shadow-lg rounded-lg"
+          >
+            <motion.img
+              key={selectedImage}
               src={selectedImage}
               alt="Couple"
-              className="w-[450px] h-full object-cover shadow-md"
+              initial={{ opacity: 0, scale: 1.05 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="w-[450px] h-full object-cover rounded-lg shadow-md"
             />
-          </div>
-        </div>
-      </div>
+          </motion.div>
+        </motion.div>
+      </motion.div>
 
+      {/* ///////////////////////////////////////////////Bottom Line Animation */}
       <motion.div
-        className="absolute top-0 left-0 w-full h-[5px] bg-gradient-to-r from-[#FFD700] via-[#FFAA00] to-[#FFD700] 
-  mt-16 shadow-[0_0_15px_#FFD700] rounded-full"
-        initial={{ width: "0%" }} // Start with 0% width
-        whileInView={{ width: "100%" }} // Expand to 100% width
+        className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#E5D4C0] via-[#C8A888] to-[#D4A373] 
+               shadow-[0_0_10px_#C8A888] rounded-full"
+        initial={{ width: "0%" }}
+        whileInView={{ width: "100%" }}
         transition={{ duration: 1.8, ease: "easeInOut" }}
       />
-
+      {/* ////////////////////////////////////////////////////////////////////////////////////////////// */}
       <AnimatePresence>
         {selectedCouple && (
           <motion.div
-            className="fixed inset-0 flex flex-col items-center justify-start bg-[#3D1D5A]/90 z-50 p-6 md:p-10 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={{
+              hidden: { opacity: 0, y: 50 },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: { duration: 1, ease: "easeOut" },
+              },
+            }}
+            className="fixed inset-0 flex flex-col items-center justify-start bg-[#5C3D2E]/90 z-50 p-6 md:p-10 
             backdrop-blur-md overflow-y-auto w-full"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
           >
             <button
               onClick={() => setSelectedCouple(null)}
-              className="absolute top-4 right-6 sm:top-6 sm:right-6 text-[#FFD700] hover:text-white 
+              className="absolute top-4 right-6 sm:top-6 sm:right-6 text-[#D4A373] hover:text-[#8C5E3C] 
         text-3xl sm:text-4xl  sm:mt-0"
             >
               &times;
             </button>
-            <h2 className="text-2xl md:text-3xl xl:text-4xl font-heading font-semibold text-[#FFD700] mt-10">
+            <h2 className="text-2xl md:text-3xl xl:text-4xl font-heading font-semibold text-[#D4A373] mt-10">
               {selectedCouple.name}'s Gallery
             </h2>
             <div className="columns-3 mt-6 md:columns-3 gap-2 w-full max-w-6xl space-y-2">
@@ -207,7 +261,7 @@ const LoveStories = () => {
                   key={index}
                   src={img}
                   alt="Gallery"
-                  className="w-full h-auto object-cover shadow-md cursor-pointer border-4 border-[#F6C453]"
+                  className="w-full h-auto object-cover shadow-md cursor-pointer border-4 border-[#C8A888]"
                   whileHover={{ scale: 1.05 }}
                   onClick={() => setLightboxImage(img)}
                 />
@@ -220,38 +274,38 @@ const LoveStories = () => {
       <AnimatePresence>
         {lightboxImage && (
           <motion.div
-            className="fixed inset-0 flex items-center justify-center bg-[rgba(0,0,0,0.85)] z-50 p-4"
+            className="fixed inset-0 flex items-center justify-center bg-[#3D2C2E]/90 z-50 p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
             <button
               onClick={() => setLightboxImage(null)}
-              className="absolute top-6 right-6 text-white text-4xl"
+              className="absolute top-6 right-6 text-[#D4A373] text-4xl"
             >
               &times;
             </button>
             <button
               onClick={handlePrev}
-              className="absolute left-6 text-white text-4xl"
+              className="absolute left-6 text-[#D4A373] text-4xl"
             >
               &#8249;
             </button>
             <img
               src={lightboxImage}
-              className="max-w-[90%] max-h-[80vh] object-contain rounded-lg border-4 border-[#F6C453]"
+              className="max-w-[90%] max-h-[80vh] object-contain rounded-lg border-4 border-[#C8A888]"
               alt="Lightbox"
             />
             <button
               onClick={handleNext}
-              className="absolute right-6 text-white text-4xl"
+              className="absolute right-6 text-[#D4A373] text-4xl"
             >
               &#8250;
             </button>
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 };
 

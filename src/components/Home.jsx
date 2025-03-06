@@ -37,6 +37,9 @@ const HomePage = () => {
   return (
     <div className="relative w-full min-h-screen pb-0 mb-0 overflow-hidden">
       <motion.div
+        // initial={{ y: 50, opacity: 0 }}
+        // animate={{ y: 0, opacity: 1 }}
+        // transition={{ delay: 1, duration: 1, ease: "easeOut" }}
         id="home"
         className="flex w-full min-h-screen flex-col h-full p-8 gap-4 
       bg-gradient-to-r from-[#FAF3E0] via-[#E5D4C0] to-[#C8A888] 
@@ -45,14 +48,20 @@ const HomePage = () => {
       >
         {/* Image Section */}
         <motion.div
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.5, duration: 1, ease: "easeOut" }}
           className="flex flex-col sm:flex-row justify-center items-center gap-5 w-full h-[500px] sm:h-[550px] md:h-[600px] lg:h-[580px] xl:h-[660px] 2xl:h-[650px] 
         bg-[#F5E6D0] bg-opacity-90 rounded-lg 
         order-1 lg:order-2 
         mt-20 sm:mt-24 md:mt-24 lg:mt-0 xl:mt-0 2xl:mt-0"
         >
           {/* Large Screen - Two Images Centered */}
-          <div className="hidden sm:flex justify-center items-center gap-5">
-            <div
+          <motion.div className="hidden sm:flex justify-center items-center gap-5">
+            <motion.div
+              initial={{ y: 50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.7, duration: 1, ease: "easeOut" }}
               className="w-[40%] h-[80%] flex justify-center items-center overflow-hidden rounded-lg 
             border-2 bg-gradient-to-b from-[#C8A888] via-[#E5D4C0] to-[#F5E6D0] 
             shadow-[0_0_20px_#C8A888]"
@@ -61,10 +70,14 @@ const HomePage = () => {
                 src="images/H2.JPG"
                 alt="Wedding Photography"
                 className="w-full h-full object-cover rounded-lg"
+                loading="lazy"
               />
-            </div>
+            </motion.div>
 
-            <div
+            <motion.div
+              initial={{ y: 50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.8, duration: 1, ease: "easeOut" }}
               className="w-[40%] h-[80%] flex justify-center items-center overflow-hidden rounded-lg 
             border-2 bg-gradient-to-b from-[#C8A888] via-[#E5D4C0] to-[#F5E6D0] 
             shadow-[0_0_20px_#C8A888]"
@@ -73,12 +86,16 @@ const HomePage = () => {
                 src="images/H1.png"
                 alt="Wedding Moment"
                 className="w-full h-full object-cover rounded-lg"
+                loading="lazy"
               />
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Mobile - Swipeable Smooth Slider with Correct Direction */}
-          <div
+          <motion.div
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.6, duration: 1, ease: "easeOut" }}
             className="sm:hidden w-[90%] h-[80%] flex justify-center items-center overflow-hidden rounded-lg 
               border-2 bg-gradient-to-b from-[#C8A888] via-[#E5D4C0] to-[#F5E6D0] 
               shadow-[0_0_20px_#C8A888] relative"
@@ -96,13 +113,17 @@ const HomePage = () => {
                 exit="exit"
                 custom={direction}
                 transition={{ duration: 0.6, ease: "easeInOut" }}
+                loading="lazy"
               />
             </AnimatePresence>
-          </div>
+          </motion.div>
         </motion.div>
 
         {/* Text Section */}
         <motion.div
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 1, duration: 1, ease: "easeOut" }}
           className="flex flex-col order-2 items-start justify-center px-6 py-6 gap-5
           lg:order-1 sm:w-full sm:px-10 md:w-[110%] md:px-9 lg:-translate-x-2 lg:w-[50%]
           xl:w-[60%] 2xl:w-[50%]"
@@ -127,6 +148,7 @@ const HomePage = () => {
             }}
             className="mt-0 px-6 py-3 bg-[#D4A373] text-[#5C3D2E] font-semibold rounded-md lg:mt-3 
           transition-all duration-300 hover:bg-[#C8A888] hover:-translate-y-1 shadow-md"
+            aria-label="View Gallery"
           >
             VIEW GALLERY
           </motion.button>
