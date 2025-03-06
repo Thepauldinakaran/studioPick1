@@ -6,13 +6,29 @@ const HomePage = () => {
   const [currentImage, setCurrentImage] = useState(0);
   const images = ["images/H2.JPG", "images/H1.png"];
 
+  // Swipe Handlers
   const handlers = useSwipeable({
-    onSwipedLeft: () => setCurrentImage((prev) => (prev + 1) % images.length),
-    onSwipedRight: () =>
-      setCurrentImage((prev) => (prev - 1 + images.length) % images.length),
+    onSwipedLeft: () => handleNextImage(),
+    onSwipedRight: () => handlePrevImage(),
     preventScrollOnSwipe: true,
     trackMouse: true,
   });
+
+  // Functions to Move Images Left & Right
+  const handleNextImage = () => {
+    setCurrentImage((prev) => (prev + 1) % images.length);
+  };
+
+  const handlePrevImage = () => {
+    setCurrentImage((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  // Animation Variants
+  const imageVariants = {
+    enter: { x: "100%", opacity: 0 },
+    center: { x: 0, opacity: 1 },
+    exit: { x: "-100%", opacity: 0 },
+  };
 
   return (
     <div className="relative w-full min-h-screen pb-0 mb-0 overflow-hidden">
@@ -57,23 +73,28 @@ const HomePage = () => {
             </div>
           </div>
 
-          {/* Mobile - Swipeable Single Image (Inside Fixed Box) */}
+          {/* Mobile - Swipeable Smooth Slider */}
           <div
             className="sm:hidden w-[90%] h-[80%] flex justify-center items-center overflow-hidden rounded-lg 
               border-2 bg-gradient-to-b from-[#C8A888] via-[#E5D4C0] to-[#F5E6D0] 
-              shadow-[0_0_20px_#C8A888]"
+              shadow-[0_0_20px_#C8A888] relative"
             {...handlers}
           >
-            <motion.img
+            <motion.div
               key={currentImage}
-              src={images[currentImage]}
-              alt="Wedding Photography"
-              className="w-full h-full object-cover rounded-lg"
-              initial={{ x: "100%" }}
-              animate={{ x: "0%" }}
-              exit={{ x: "-100%" }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-            />
+              variants={imageVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.6, ease: "easeInOut" }}
+              className="absolute w-full h-full flex items-center justify-center"
+            >
+              <img
+                src={images[currentImage]}
+                alt="Wedding Photography"
+                className="w-full h-full object-cover rounded-lg"
+              />
+            </motion.div>
           </div>
         </motion.div>
 
