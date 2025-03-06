@@ -47,11 +47,11 @@ const Services = () => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.5 }}
-      className="relative bg-gradient-to-r from-[#4A148C] via-[#6A1B9A] to-[#D4AF37] 
-      text-white w-full h-full flex flex-col lg:flex-row items-center justify-center 
-      p-6 sm:p-12 lg:p-24 gap-6 lg:gap-14 2xl:p-40 "
+      className="relative bg-gradient-to-r from-[#EDE7F6] via-[#D1C4E9] to-[#B39DDB] 
+      text-[#333333] w-full h-full flex flex-col lg:flex-row items-center justify-center 
+      p-6 sm:p-12 lg:p-24 gap-6 lg:gap-14 2xl:p-40"
     >
-      {/* Left Section - Text + Image (70%) */}
+      {/* Left Section - Text + Image */}
       <div className="w-full lg:w-[70%] h-auto lg:h-[700px] flex flex-col justify-between">
         {/* Text Content */}
         <motion.div
@@ -61,18 +61,18 @@ const Services = () => {
           viewport={{ once: true, amount: 0.5 }}
           className="space-y-6"
         >
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-subheading font-semibold text-[#FFFFFF]">
-            What <em className="italic text-[#FFD700]">services</em> I provide?
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-subheading font-semibold text-[#333333]">
+            What <em className="italic text-[#8E24AA]">services</em> I provide?
           </h2>
-          <p className="text-[#E5CFF7] text-base font-body sm:text-lg lg:text-2xl text-justify">
+          <p className="text-[#5E35B1] text-base font-body sm:text-lg lg:text-2xl text-justify">
             I love shooting{" "}
-            <em className="italic text-[#FFD700]">weddings & couples </em>
-            since there are so many emotions to capture. Photography is my
-            passion, and I love turning ideas into beautiful, timeless photos.
+            <em className="italic text-[#8E24AA]">weddings & couples</em> since
+            there are so many emotions to capture. Photography is my passion,
+            and I love turning ideas into beautiful, timeless photos.
           </p>
         </motion.div>
 
-        {/* Left Image with Animated Glowing Border */}
+        {/* Left Image with Soft Glowing Border */}
         <motion.div
           variants={leftImageVariants}
           initial="hidden"
@@ -81,14 +81,14 @@ const Services = () => {
           className="relative mt-6 lg:mt-10"
         >
           <motion.div
-            className="absolute inset-0 rounded-lg border-4 border-[#FFD700] animate-pulse"
+            className="absolute inset-0 rounded-lg border-4 border-[#B39DDB] animate-pulse"
             animate={{
               boxShadow: [
-                "0px 0px 10px rgba(255, 215, 0, 0.4)",
-                "0px 0px 20px rgba(255, 215, 0, 0.6)",
-                "0px 0px 30px rgba(255, 215, 0, 0.8)",
-                "0px 0px 20px rgba(255, 215, 0, 0.6)",
-                "0px 0px 10px rgba(255, 215, 0, 0.4)",
+                "0px 0px 10px rgba(179, 157, 219, 0.3)",
+                "0px 0px 20px rgba(179, 157, 219, 0.5)",
+                "0px 0px 30px rgba(179, 157, 219, 0.7)",
+                "0px 0px 20px rgba(179, 157, 219, 0.5)",
+                "0px 0px 10px rgba(179, 157, 219, 0.3)",
               ],
             }}
             transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
@@ -102,7 +102,7 @@ const Services = () => {
         </motion.div>
       </div>
 
-      {/* Right Section - Image + Text (30%) */}
+      {/* Right Section - Image + Text */}
       <div className="w-full lg:w-[30%] lg:h-[700px] flex flex-col justify-between items-center">
         {/* Right Image */}
         <motion.div
@@ -110,12 +110,26 @@ const Services = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.5 }}
-          className="w-full sm:w-full lg:w-full sm:h-[400px] lg:h-[500px] 2xl:h-[650px]"
+          className="w-full sm:w-full lg:w-full sm:h-[400px] lg:h-[500px] 2xl:h-[650px] relative"
         >
+          {/* Glowing Effect for Right Image */}
+          <motion.div
+            className="absolute inset-0 rounded-lg border-4 border-[#8E24AA] animate-pulse"
+            animate={{
+              boxShadow: [
+                "0px 0px 10px rgba(142, 36, 170, 0.3)",
+                "0px 0px 20px rgba(142, 36, 170, 0.5)",
+                "0px 0px 30px rgba(142, 36, 170, 0.7)",
+                "0px 0px 20px rgba(142, 36, 170, 0.5)",
+                "0px 0px 10px rgba(142, 36, 170, 0.3)",
+              ],
+            }}
+            transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
+          />
           <img
             src="images/ser2.png"
             alt="Couple Portrait"
-            className="w-full h-full object-cover rounded-lg shadow-lg border-4 border-[#F6C453]"
+            className="w-full h-full object-cover rounded-lg shadow-lg border-4 border-transparent"
           />
         </motion.div>
 
@@ -125,7 +139,7 @@ const Services = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.5 }}
-          className="text-[#E5CFF7] text-base font-body sm:text-lg lg:text-xl 
+          className="text-[#5E35B1] text-base font-body sm:text-lg lg:text-xl 
           mt-6 sm:mt-8 md:mt-10 lg:mt-12 xl:mt-14 2xl:mt-6 text-justify"
         >
           I would like to give you a unique photography experience, designed to
@@ -136,8 +150,8 @@ const Services = () => {
 
       {/* Animated Bottom Border with Wavy Effect */}
       <motion.div
-        className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#FFD700] via-[#FFAA00] to-[#FFD700] 
-                  shadow-[0_0_10px_#FFD700] rounded-full"
+        className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#B39DDB] via-[#8E24AA] to-[#B39DDB] 
+                  shadow-[0_0_10px_#B39DDB] rounded-full"
         initial={{ width: "0%" }}
         whileInView={{ width: "100%" }}
         transition={{ duration: 1.8, ease: "easeInOut" }}
