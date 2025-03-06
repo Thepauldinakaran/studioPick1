@@ -34,17 +34,36 @@ const testimonials = [
   },
 ];
 
-const FeedbackCarousel = () => {
+const Feedback = ({ autoSlideInterval = 6000 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
 
+  // Auto-slide functionality
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-    }, 6000); // Auto-slide every 6 seconds
+      if (!isHovered) {
+        setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+      }
+    }, autoSlideInterval);
 
     return () => clearInterval(interval);
+  }, [isHovered, autoSlideInterval]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "ArrowRight") {
+        handleNext();
+      } else if (e.key === "ArrowLeft") {
+        handlePrev();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
+  // Navigation handlers
   const handleNext = () => {
     setCurrentIndex((prev) => (prev + 1) % testimonials.length);
   };
@@ -70,12 +89,13 @@ const FeedbackCarousel = () => {
         but a memory lasts forever."
       </h2>
 
-      {/* Content */}
-      <div className="relative h-[] bg-white bg-opacity-20 p-6 sm:p-8 md:p-10 lg:p-11 w-full max-w-lg shadow-lg backdrop-blur-md overflow-hidden rounded-lg">
-        <div
-          className="border-4 h-[400px] border-[#C8A888] p-6 sm:p-10 md:p-12 lg:p-16 relative flex flex-col items-center justify-center text-center gap-6 overflow-hidden"
-          // style={{ height: "400px" }} // FIX: Box height is now fixed
-        >
+      {/* Carousel Content */}
+      <div
+        className="relative h-[] bg-white bg-opacity-20 p-6 sm:p-8 md:p-10 lg:p-11 w-full max-w-lg shadow-lg backdrop-blur-md overflow-hidden rounded-lg"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <div className="border-4 h-[400px] border-[#C8A888] p-6 sm:p-10 md:p-12 lg:p-16 relative flex flex-col items-center justify-center text-center gap-6 overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.div
               key={testimonials[currentIndex].text}
@@ -85,14 +105,17 @@ const FeedbackCarousel = () => {
               transition={{ duration: 0.6, ease: "easeOut" }}
               className="w-full h-[350px] flex flex-col items-center justify-center text-center gap-4"
             >
-              {/* Client Image with Zoom Effect */}
+              {/* Client Image */}
               <motion.img
                 src={testimonials[currentIndex].image}
-                alt="Client"
-                className="w-20 h-20 md:w-24 md:h-24 rounded-full shadow-md border-2 border-[#D4A373] object-cover"
+                alt={testimonials[currentIndex].name}
+                className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full shadow-md border-2 border-[#D4A373] object-cover"
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.6 }}
+                onError={(e) => {
+                  e.target.src = "images/fallback.jpg"; // Fallback image
+                }}
               />
 
               {/* Star Ratings */}
@@ -118,12 +141,14 @@ const FeedbackCarousel = () => {
         <button
           className="absolute left-6 text-[#D4A373] text-4xl top-1/2 transform -translate-y-1/2"
           onClick={handlePrev}
+          aria-label="Previous testimonial"
         >
           &#8249;
         </button>
         <button
           className="absolute right-6 text-[#D4A373] text-4xl top-1/2 transform -translate-y-1/2"
           onClick={handleNext}
+          aria-label="Next testimonial"
         >
           &#8250;
         </button>
@@ -133,7 +158,7 @@ const FeedbackCarousel = () => {
           {testimonials.map((_, index) => (
             <div
               key={index}
-              className={`w-3 h-3 rounded-full ${
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
                 index === currentIndex
                   ? "bg-[#D4A373]"
                   : "bg-[#C8A888] opacity-50"
@@ -146,4 +171,4 @@ const FeedbackCarousel = () => {
   );
 };
 
-export default FeedbackCarousel;
+export default Feedback;
