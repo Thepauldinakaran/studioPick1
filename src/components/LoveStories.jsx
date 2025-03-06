@@ -131,11 +131,11 @@ const LoveStories = () => {
         bg-gradient-to-r from-[#FAF3E0] via-[#E5D4C0] to-[#C8A888] text-[#5C3D2E] 
         px-6 py-20 lg:px-12 gap-8 2xl:p-32 relative"
     >
-      {/* Title Animation (Appears when scrolling) */}
+      {/* ///////////////////////////Title Animation (Appears when scrolling) */}
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }} // ✅ Animation triggers only when in viewport
+        viewport={{ once: true, amount: 0.3 }} /////////////////////////////////// Animation triggers only when in viewport
         variants={{
           hidden: { opacity: 0, y: 50 },
           visible: {
@@ -153,11 +153,11 @@ const LoveStories = () => {
         </h2>
       </motion.div>
 
-      {/* Couple List Animation */}
+      {/*/////////////////////////////////// Couple List Animation */}
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }} // ✅ Runs only once when scrolling down
+        viewport={{ once: true, amount: 0.3 }} //////////////////Runs only once when scrolling down
         variants={{
           hidden: { opacity: 0, y: 50 },
           visible: {
@@ -300,7 +300,8 @@ const LoveStories = () => {
               onClick={handleNext}
               className="absolute right-6 text-[#D4A373] text-4xl"
             >
-              &#8250;
+              &#8250;{" "}
+              {/* X- icon   //////////////////////////////////////////////////////////////////////////////////// */}
             </button>
           </motion.div>
         )}

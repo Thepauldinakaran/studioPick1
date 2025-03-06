@@ -48,7 +48,7 @@ const Navbar = () => {
         ${
           isScrolled
             ? "py-3 md:py-5 text-sm md:text-base "
-            : "py-6 md:py-5 text-lg md:text-lg"
+            : "py-6 md:py-5 text-lg md:text-lg" //////Navbar bottom line
         }`}
       >
         <div className="hidden md:flex w-full items-center justify-between ">
@@ -61,29 +61,29 @@ const Navbar = () => {
                   e.preventDefault();
                   scrollToSection(`#${item.toLowerCase()}`);
                 }}
-                className="text-[#5C3D2E] border-b-4 border-transparent hover:border-[#D4AF37] transition-all duration-200"
+                className="text-[#5C3D2E] font-semibold border-b-4 border-transparent hover:border-[#D4A373] transition-all duration-200"
               >
                 {item}
               </a>
             ))}
           </div>
-
+          {/* /////////////////////////////////StudioPick icon logo */}
           <div className="flex flex-col gap-3 items-center md:items-start">
             <img
               src="images/01.png"
               alt="logo"
-              className="h-14 ml-[20px] md:h-14 lg:h-16 xl:h-18 2xl:h-[80px] w-auto md:ml-[70px]"
+              className="h-16 ml-[20px] md:h-14 lg:h-16 xl:h-18 2xl:h-[80px] w-auto md:ml-[70px]"
             />
           </div>
           {/* Logo Name Image */}
-
+          {/* ///////////////////////////////////////////////////////////// */}
           {/* <img
               src="images/02.png"
               alt="logoname"
               className="h-9 md:h-4 lg:h-[15px] w-auto"
             />
           </div> */}
-
+          {/* //////////////////////////////////////////////////////// */}
           <div className="flex space-x-5 md:space-x-7 lg:space-x-10">
             {["ABOUT", "GALLERY"].map((item) => (
               <a
@@ -93,7 +93,7 @@ const Navbar = () => {
                   e.preventDefault();
                   scrollToSection(`#${item.toLowerCase()}`);
                 }}
-                className="text-[#5C3D2E]  border-b-4 border-transparent hover:border-[#D4A373] transition-all duration-200"
+                className="text-[#5C3D2E] font-semibold  border-b-4 border-transparent hover:border-[#D4A373] transition-all duration-200"
               >
                 {item}
               </a>
@@ -162,7 +162,7 @@ const Navbar = () => {
                     e.preventDefault();
                     scrollToSection(`#${item.toLowerCase()}`);
                   }}
-                  className="hover:text-[#FFD700] text-lg text-[#5C3D2E]"
+                  className="hover:text-[#FFD700] text-lg font-semibold text-[#5C3D2E]"
                 >
                   {item}
                 </a>

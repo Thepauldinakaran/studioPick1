@@ -13,22 +13,22 @@ const Footer = () => {
     >
       <div className="container mx-auto px-6 sm:px-12 md:px-16 lg:px-24 xl:px-40 2xl:px-64">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 text-center md:text-left">
-          {/* Left Section - Logo & Social Icons */}
+          {/*///////////////////////// Left Section - Logo & Social Icons */}
           <div className="flex flex-col items-center md:items-start space-y-6 xl:mt-[130px] md:mt-[110px]">
-            {/* Logo Section */}
+            {/* ////////////////////////////Logo Section */}
             <div className="flex flex-col gap-3 items-center md:items-start">
               <img
                 src="images/01.png"
                 alt="logo"
-                className="h-14 ml-[20px] md:h-14 lg:h-16 xl:h-18 2xl:h-[110px] w-auto md:ml-[70px]"
+                className="h-24 ml-[20px] md:h-14 lg:h-16 xl:h-18 2xl:h-[140px] w-auto md:ml-[70px]"
                 width={110}
                 height={110}
                 loading="lazy"
               />
             </div>
 
-            {/* Contact & Social Icons */}
-            <div className="flex ml-5 flex-wrap justify-center md:justify-start gap-6">
+            {/*////////////////////////////// Contact & Social Icons */}
+            <div className="flex ml-5 flex-wrap justify-center md:justify-start gap-6 2xl:ml-16">
               <a
                 href="https://www.instagram.com/studiopic.k"
                 target="_blank"
@@ -69,10 +69,10 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Right Section - Google Map & Address */}
+          {/* /////////////////////////////Right Section --- Google Map & Address */}
           <div className="space-y-4">
-            <h3 className="text-lg font-bold text-[#8C5E3C]">ADDRESS</h3>
-            <address className="text-[#5C3D2E] leading-relaxed not-italic">
+            <h3 className="text-lg font-bold text-[#8C5E3C]">ADDRESS: </h3>
+            <address className="text-[#5C3D2E] font-semibold leading-relaxed not-italic">
               Kattupillayar Kovil stop, Narimedu, <br /> Madurai - 625002
             </address>
             <div className="rounded-lg overflow-hidden shadow-lg">
@@ -91,7 +91,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Centered Copyright Text */}
+        {/*///////////////////////////////////// Centered Copyright Text */}
         <p className="text-center text-[#8C6F61] text-sm sm:text-base mt-8">
           &copy; {new Date().getFullYear()} Licensing. Powered by Studiopick.
         </p>

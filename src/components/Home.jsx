@@ -23,7 +23,7 @@ const HomePage = () => {
 
   // Move to Previous Image (Swipe Right)
   const handlePrevImage = () => {
-    setDirection(-1); // Left-to-right animation
+    setDirection(-1); // /////Left-to-right animation
     setCurrentImage((prev) => (prev - 1 + images.length) % images.length);
   };
 
@@ -46,7 +46,7 @@ const HomePage = () => {
       bg-cover bg-no-repeat shadow-[0px_0px_30px_5px_rgba(200,168,136,0.3)]
       sm:p-10 md:p-14 lg:flex-row lg:p-10 lg:pt-40 xl:p-32 xl:pt-52 2xl:p-44"
       >
-        {/* Image Section */}
+        {/* ///////////////////////////////////Image Section */}
         <motion.div
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -56,7 +56,7 @@ const HomePage = () => {
         order-1 lg:order-2 
         mt-20 sm:mt-24 md:mt-24 lg:mt-0 xl:mt-0 2xl:mt-0"
         >
-          {/* Large Screen - Two Images Centered */}
+          {/* ///////////////////////////////Large Screen - Two Images Centered */}
           <motion.div className="hidden sm:flex justify-center items-center gap-5">
             <motion.div
               initial={{ y: 50, opacity: 0 }}
@@ -91,7 +91,7 @@ const HomePage = () => {
             </motion.div>
           </motion.div>
 
-          {/* Mobile - Swipeable Smooth Slider with Correct Direction */}
+          {/* ////////////////////////////////////////////Mobile - Swipeable Smooth Slider with Correct Direction */}
           <motion.div
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}

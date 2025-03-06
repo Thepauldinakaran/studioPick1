@@ -20,7 +20,7 @@ const Services = () => {
       text-[#5C3D2E] w-full h-full flex flex-col lg:flex-row items-center justify-center 
       p-6 sm:p-12 lg:p-24 gap-6 lg:gap-14 2xl:p-40"
     >
-      {/* Left Section - Text + Image */}
+      {/* /////////////////////////Left Section - Text + Image */}
       <div className="w-full lg:w-[70%] h-auto lg:h-[700px] flex flex-col justify-between">
         <motion.div
           variants={textVariants}
@@ -40,7 +40,7 @@ const Services = () => {
           </p>
         </motion.div>
 
-        {/* Left Image with Soft Glow Border */}
+        {/* ////////////////////////////Left Image with Soft Glow Border */}
         <motion.div className="relative mt-6 lg:mt-10 group">
           <motion.div
             className="absolute inset-0 rounded-lg border-4 border-[#C8A888] animate-pulse"
@@ -65,9 +65,9 @@ const Services = () => {
         </motion.div>
       </div>
 
-      {/* Right Section - Image + Text */}
+      {/*///////////////////////////// Right Section - Image + Text */}
       <div className="w-full lg:w-[30%] lg:h-[700px] flex flex-col justify-between items-center">
-        {/* Right Image with Soft Glow */}
+        {/*////////////////////// Right Image with Soft Glow */}
         <motion.div className="relative w-full sm:w-full lg:w-full sm:h-[400px] lg:h-[500px] 2xl:h-[650px] group">
           <motion.div
             className="absolute inset-0 rounded-lg border-4 border-[#D4A373] animate-pulse"
@@ -90,7 +90,7 @@ const Services = () => {
           />
         </motion.div>
 
-        {/* Right Text Below Image */}
+        {/*//////////////////////// Right Text Below Image */}
         <motion.p
           variants={textVariants}
           initial="hidden"
@@ -105,7 +105,7 @@ const Services = () => {
         </motion.p>
       </div>
 
-      {/* Soft Gradient Bottom Border */}
+      {/* //////////////////////////  Soft Gradient Bottom Border */}
       <motion.div
         className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#E5D4C0] via-[#C8A888] to-[#D4A373] 
                   shadow-[0_0_10px_#C8A888] rounded-full"

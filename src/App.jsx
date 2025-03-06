@@ -13,7 +13,7 @@ function App() {
     <Router>
       <Navbar />
       <Routes>
-        {/* Home Page with all sections */}
+        {/* Home Page with all sections////////// */}
         <Route
           path="/"
           element={
@@ -30,7 +30,7 @@ function App() {
         <Route path="/about" element={<About />} />
       </Routes>
 
-      {/* Footer inside Routes (to appear on all pages) */}
+      {/* Footer inside Routes //////////////////////////// */}
       <Footer />
     </Router>
   );
