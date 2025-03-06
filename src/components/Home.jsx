@@ -57,27 +57,23 @@ const HomePage = () => {
             </div>
           </div>
 
-          {/* Mobile - Swipeable Single Image */}
+          {/* Mobile - Swipeable Single Image (Inside Fixed Box) */}
           <div
-            className="sm:hidden w-full h-full flex justify-center items-center"
-            {...handlers}
-          >
-            <motion.div
-              key={currentImage}
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -50 }}
-              transition={{ duration: 0.5 }}
-              className="w-[90%] h-[80%] flex justify-center items-center overflow-hidden rounded-lg 
+            className="sm:hidden w-[90%] h-[80%] flex justify-center items-center overflow-hidden rounded-lg 
               border-2 bg-gradient-to-b from-[#C8A888] via-[#E5D4C0] to-[#F5E6D0] 
               shadow-[0_0_20px_#C8A888]"
-            >
-              <img
-                src={images[currentImage]}
-                alt="Wedding Photography"
-                className="w-full h-full object-cover rounded-lg"
-              />
-            </motion.div>
+            {...handlers}
+          >
+            <motion.img
+              key={currentImage}
+              src={images[currentImage]}
+              alt="Wedding Photography"
+              className="w-full h-full object-cover rounded-lg"
+              initial={{ x: "100%" }}
+              animate={{ x: "0%" }}
+              exit={{ x: "-100%" }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+            />
           </div>
         </motion.div>
 
