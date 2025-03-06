@@ -1,9 +1,10 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import React, { useState } from "react";
 import { useSwipeable } from "react-swipeable";
 
 const HomePage = () => {
   const [currentImage, setCurrentImage] = useState(0);
+  const [direction, setDirection] = useState(0);
   const images = ["images/H2.JPG", "images/H1.png"];
 
   // Swipe Handlers
@@ -14,20 +15,23 @@ const HomePage = () => {
     trackMouse: true,
   });
 
-  // Functions to Move Images Left & Right
+  // Move to Next Image (Swipe Left)
   const handleNextImage = () => {
+    setDirection(1); // Right-to-left animation
     setCurrentImage((prev) => (prev + 1) % images.length);
   };
 
+  // Move to Previous Image (Swipe Right)
   const handlePrevImage = () => {
+    setDirection(-1); // Left-to-right animation
     setCurrentImage((prev) => (prev - 1 + images.length) % images.length);
   };
 
-  // Animation Variants
+  // Animation Variants (Left & Right Swipe Effects)
   const imageVariants = {
-    enter: { x: "100%", opacity: 0 },
+    enter: (direction) => ({ x: direction > 0 ? "100%" : "-100%", opacity: 0 }),
     center: { x: 0, opacity: 1 },
-    exit: { x: "-100%", opacity: 0 },
+    exit: (direction) => ({ x: direction > 0 ? "-100%" : "100%", opacity: 0 }),
   };
 
   return (
@@ -43,7 +47,7 @@ const HomePage = () => {
         <motion.div
           className="flex flex-col sm:flex-row justify-center items-center gap-5 w-full h-[500px] sm:h-[550px] md:h-[600px] lg:h-[580px] xl:h-[660px] 2xl:h-[650px] 
         bg-[#F5E6D0] bg-opacity-90 rounded-lg 
-        order-1 lg:order-2 items-center justify-center
+        order-1 lg:order-2 
         mt-20 sm:mt-24 md:mt-24 lg:mt-0 xl:mt-0 2xl:mt-0"
         >
           {/* Large Screen - Two Images Centered */}
@@ -73,28 +77,27 @@ const HomePage = () => {
             </div>
           </div>
 
-          {/* Mobile - Swipeable Smooth Slider */}
+          {/* Mobile - Swipeable Smooth Slider with Correct Direction */}
           <div
             className="sm:hidden w-[90%] h-[80%] flex justify-center items-center overflow-hidden rounded-lg 
               border-2 bg-gradient-to-b from-[#C8A888] via-[#E5D4C0] to-[#F5E6D0] 
               shadow-[0_0_20px_#C8A888] relative"
             {...handlers}
           >
-            <motion.div
-              key={currentImage}
-              variants={imageVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{ duration: 0.6, ease: "easeInOut" }}
-              className="absolute w-full h-full flex items-center justify-center"
-            >
-              <img
+            <AnimatePresence custom={direction} initial={false}>
+              <motion.img
+                key={currentImage}
                 src={images[currentImage]}
                 alt="Wedding Photography"
-                className="w-full h-full object-cover rounded-lg"
+                className="absolute w-full h-full object-cover rounded-lg"
+                variants={imageVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                custom={direction}
+                transition={{ duration: 0.6, ease: "easeInOut" }}
               />
-            </motion.div>
+            </AnimatePresence>
           </div>
         </motion.div>
 
