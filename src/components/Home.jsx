@@ -5,7 +5,12 @@ import { useSwipeable } from "react-swipeable";
 const HomePage = () => {
   const [currentImage, setCurrentImage] = useState(0);
   const [direction, setDirection] = useState(0);
-  const images = ["images/H2.JPG", "images/H1.png"];
+  const images = [
+    "images/H2.JPG",
+    "images/H1.png",
+    "images.v6.jpg",
+    "images.v11.jpg",
+  ];
 
   // Swipe Handlers
   const handlers = useSwipeable({

@@ -94,6 +94,24 @@ const couples = [
       "images/e10.jpg",
     ],
   },
+  {
+    name: "Couple6 & Couple6",
+    location: "MADURAI",
+    category: "ENGAGEMENT",
+    image: "images/v4.jpg",
+    gallery: [
+      "images/v1.jpg",
+      "images/v2.jpg",
+      "images/v3.jpg",
+      "images/v4.jpg",
+      "images/v6.jpg",
+      "images/v7.jpg",
+      "images/v8.jpg",
+      "images/v9.jpg",
+      "images/v10.jpg",
+      "images/v11.jpg",
+    ],
+  },
 ];
 
 const LoveStories = () => {
