@@ -28,30 +28,39 @@ const HomePage = () => {
 
   // Move to Previous Image (Swipe Right)
   const handlePrevImage = () => {
-    setDirection(-1); // /////Left-to-right animation
+    setDirection(-1); // Left-to-right animation
     setCurrentImage((prev) => (prev - 1 + images.length) % images.length);
   };
 
   // Animation Variants (Left & Right Swipe Effects)
   const imageVariants = {
-    enter: (direction) => ({ x: direction > 0 ? "100%" : "-100%", opacity: 0 }),
-    center: { x: 0, opacity: 1 },
-    exit: (direction) => ({ x: direction > 0 ? "-100%" : "100%", opacity: 0 }),
+    enter: (direction) => ({
+      x: direction > 0 ? "100%" : "-100%", // Enter from the correct side
+      opacity: 0,
+    }),
+    center: { x: 0, opacity: 1 }, // Image in view
+    exit: (direction) => ({
+      x: direction > 0 ? "-100%" : "100%", // Exit opposite to enter
+      opacity: 0,
+    }),
+  };
+
+  // Set Image on Dot Click
+  const handleDotClick = (index) => {
+    setDirection(index > currentImage ? 1 : -1);
+    setCurrentImage(index);
   };
 
   return (
-    <div className="relative max-w-[100vw]  overflow-x:hidden min-h-screen pb-0 mb-0 overflow-hidden">
+    <div className="relative max-w-[100vw] overflow-x:hidden min-h-screen pb-0 mb-0 overflow-hidden">
       <motion.div
-        // initial={{ y: 50, opacity: 0 }}
-        // animate={{ y: 0, opacity: 1 }}
-        // transition={{ delay: 1, duration: 1, ease: "easeOut" }}
         id="home"
         className="flex w-full min-h-screen flex-col h-full p-8 gap-4 
       bg-gradient-to-r from-[#FAF3E0] via-[#E5D4C0] to-[#C8A888] 
       bg-cover bg-no-repeat shadow-[0px_0px_30px_5px_rgba(200,168,136,0.3)]
       sm:p-10 md:p-14 lg:flex-row lg:p-10 lg:pt-40 xl:p-32 xl:pt-52 2xl:p-44"
       >
-        {/* ///////////////////////////////////Image Section */}
+        {/* Image Section */}
         <motion.div
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -61,7 +70,7 @@ const HomePage = () => {
         order-1 lg:order-2 
         mt-20 sm:mt-24 md:mt-24 lg:mt-0 xl:mt-0 2xl:mt-0"
         >
-          {/* ///////////////////////////////Large Screen - Two Images Centered */}
+          {/* Large Screen - Two Images Centered */}
           <motion.div className="hidden sm:flex justify-center items-center gap-5">
             <motion.div
               initial={{ y: 50, opacity: 0 }}
@@ -96,7 +105,7 @@ const HomePage = () => {
             </motion.div>
           </motion.div>
 
-          {/* ////////////////////////////////////////////Mobile - Swipeable Smooth Slider with Correct Direction */}
+          {/* Mobile - Swipeable Smooth Slider with Correct Direction */}
           <motion.div
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -121,6 +130,34 @@ const HomePage = () => {
                 loading="lazy"
               />
             </AnimatePresence>
+            {/* Navigation Buttons */}
+            <button
+              className="absolute left-1 text-[#5C3D2E] hover:text-[#C8A888] text-4xl top-1/2 transform -translate-y-1/2"
+              onClick={handlePrevImage}
+              aria-label="Previous Image"
+            >
+              &#8249;
+            </button>
+            <button
+              className="absolute right-1 text-[#5C3D2E] hover:text-[#C8A888] text-4xl top-1/2 transform -translate-y-1/2"
+              onClick={handleNextImage}
+              aria-label="Next Image"
+            >
+              &#8250;
+            </button>
+            {/* Dots Navigation */}
+            <div className="absolute bottom-3 flex gap-2">
+              {images.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => handleDotClick(index)}
+                  className={`w-[8px] h-[8px] rounded-full ${
+                    index === currentImage ? "bg-[#C8A888]" : "bg-gray-400"
+                  }`}
+                  aria-label={`Go to image ${index + 1}`}
+                ></button>
+              ))}
+            </div>
           </motion.div>
         </motion.div>
 

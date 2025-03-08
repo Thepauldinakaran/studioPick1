@@ -37,11 +37,13 @@ const testimonials = [
 const Feedback = ({ autoSlideInterval = 6000 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const [direction, setDirection] = useState(1); // 1 for right, -1 for left
 
   // Auto-slide functionality
   useEffect(() => {
     const interval = setInterval(() => {
       if (!isHovered) {
+        setDirection(1); // Auto-slide always moves right
         setCurrentIndex((prev) => (prev + 1) % testimonials.length);
       }
     }, autoSlideInterval);
@@ -65,13 +67,31 @@ const Feedback = ({ autoSlideInterval = 6000 }) => {
 
   // Navigation handlers
   const handleNext = () => {
+    setDirection(1); // Move right
     setCurrentIndex((prev) => (prev + 1) % testimonials.length);
   };
 
   const handlePrev = () => {
-    setCurrentIndex((prev) =>
-      prev === 0 ? testimonials.length - 1 : prev - 1
+    setDirection(-1); // Move left
+    setCurrentIndex(
+      (prev) => (prev - 1 + testimonials.length) % testimonials.length
     );
+  };
+
+  // Animation variants
+  const variants = {
+    enter: (direction) => ({
+      x: direction > 0 ? "100%" : "-100%", // Enter from the right or left
+      opacity: 0,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+    },
+    exit: (direction) => ({
+      x: direction > 0 ? "-100%" : "100%", // Exit to the opposite side
+      opacity: 0,
+    }),
   };
 
   return (
@@ -91,18 +111,20 @@ const Feedback = ({ autoSlideInterval = 6000 }) => {
 
       {/* Carousel Content */}
       <div
-        className="relative h-[] bg-white bg-opacity-20 p-6 sm:p-8 md:p-10 lg:p-11 w-full max-w-lg shadow-lg backdrop-blur-md overflow-hidden rounded-lg"
+        className="relative h-[500px] bg-white bg-opacity-20 p-6 sm:p-8 md:p-10 lg:p-11 w-full max-w-lg shadow-lg backdrop-blur-md overflow-hidden rounded-lg"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
         <div className="border-4 h-[400px] border-[#C8A888] p-6 sm:p-10 md:p-12 lg:p-16 relative flex flex-col items-center justify-center text-center gap-6 overflow-hidden">
-          <AnimatePresence mode="wait">
+          <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={testimonials[currentIndex].text}
-              initial={{ x: "100%", opacity: 0 }}
-              animate={{ x: "0%", opacity: 1 }}
-              exit={{ x: "-100%", opacity: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              custom={direction}
+              variants={variants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.6, ease: "easeInOut" }}
               className="w-full h-[350px] flex flex-col items-center justify-center text-center gap-4"
             >
               {/* Client Image */}
@@ -140,14 +162,14 @@ const Feedback = ({ autoSlideInterval = 6000 }) => {
         {/* Navigation Buttons */}
         <button
           className="absolute left-6 text-[#D4A373] text-4xl top-1/2 transform -translate-y-1/2"
-          onClick={handlePrev}
+          onClick={handleNext}
           aria-label="Previous testimonial"
         >
           &#8249;
         </button>
         <button
           className="absolute right-6 text-[#D4A373] text-4xl top-1/2 transform -translate-y-1/2"
-          onClick={handleNext}
+          onClick={handlePrev}
           aria-label="Next testimonial"
         >
           &#8250;
@@ -156,14 +178,16 @@ const Feedback = ({ autoSlideInterval = 6000 }) => {
         {/* Dots Indicator */}
         <div className="absolute bottom-2 md:bottom-3 left-1/2 transform -translate-x-1/2 flex gap-2">
           {testimonials.map((_, index) => (
-            <div
+            <button
               key={index}
+              aria-label={`Go to testimonial ${index + 1}`}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
                 index === currentIndex
                   ? "bg-[#D4A373]"
                   : "bg-[#C8A888] opacity-50"
               }`}
-            ></div>
+              onClick={() => setCurrentIndex(index)}
+            ></button>
           ))}
         </div>
       </div>
