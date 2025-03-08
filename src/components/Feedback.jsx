@@ -76,7 +76,7 @@ const Feedback = ({ autoSlideInterval = 6000 }) => {
 
   return (
     <div
-      className="relative w-full min-h-[750px] flex flex-col items-center justify-center bg-fixed bg-cover bg-center px-4 overflow-hidden"
+      className="relative max-w-[100vw] overflow-x:hidden min-h-[750px] flex flex-col items-center justify-center bg-fixed bg-cover bg-center px-4 overflow-hidden"
       style={{ backgroundImage: "url('/images/bg1.jpg')" }}
     >
       {/* Background Overlay */}

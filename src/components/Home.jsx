@@ -35,7 +35,7 @@ const HomePage = () => {
   };
 
   return (
-    <div className="relative w-full min-h-screen pb-0 mb-0 overflow-hidden">
+    <div className="relative max-w-[100vw]  overflow-x:hidden min-h-screen pb-0 mb-0 overflow-hidden">
       <motion.div
         // initial={{ y: 50, opacity: 0 }}
         // animate={{ y: 0, opacity: 1 }}

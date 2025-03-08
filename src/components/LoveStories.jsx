@@ -127,7 +127,7 @@ const LoveStories = () => {
   return (
     <motion.div
       id="gallery"
-      className="flex w-screen flex-col items-center justify-start min-h-screen 
+      className="flex max-w-[100vw]  overflow-x:hidden flex-col items-center justify-start min-h-screen 
         bg-gradient-to-r from-[#FAF3E0] via-[#E5D4C0] to-[#C8A888] text-[#5C3D2E] 
         px-6 py-20 lg:px-12 gap-8 2xl:p-32 relative"
     >

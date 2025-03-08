@@ -9,7 +9,7 @@ const Footer = () => {
   return (
     <footer
       id="contact"
-      className="w-full py-10 border-t border-[#C8A888] bg-gradient-to-r from-[#FAF3E0] via-[#E5D4C0] to-[#C8A888] text-[#5C3D2E]"
+      className="max-w-[100vw]  overflow-x:hidden py-10 border-t border-[#C8A888] bg-gradient-to-r from-[#FAF3E0] via-[#E5D4C0] to-[#C8A888] text-[#5C3D2E]"
     >
       <div className="container mx-auto px-6 sm:px-12 md:px-16 lg:px-24 xl:px-40 2xl:px-64">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 text-center md:text-left">

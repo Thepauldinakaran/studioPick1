@@ -16,8 +16,8 @@ const Services = () => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.5 }}
-      className="relative bg-gradient-to-r from-[#FAF3E0] via-[#E5D4C0] to-[#C8A888] 
-      text-[#5C3D2E] w-full h-full flex flex-col lg:flex-row items-center justify-center 
+      className="relative bg-gradient-to-r  overflow-x:hidden from-[#FAF3E0] via-[#E5D4C0] to-[#C8A888] 
+      text-[#5C3D2E] max-w-[100vw]h-full flex flex-col lg:flex-row items-center justify-center 
       p-6 sm:p-12 lg:p-24 gap-6 lg:gap-14 2xl:p-40"
     >
       {/* /////////////////////////Left Section - Text + Image */}

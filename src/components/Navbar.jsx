@@ -40,6 +40,17 @@ const Navbar = () => {
     }
   };
 
+  useEffect(() => {
+    if (showAbout) {
+      document.body.style.overflow = "hidden"; // Disable scrolling
+    } else {
+      document.body.style.overflow = "auto"; // Enable scrolling
+    }
+
+    return () => {
+      document.body.style.overflow = "auto"; // Reset when component unmounts
+    };
+  }, [showAbout]);
   return (
     <>
       <nav
