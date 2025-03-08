@@ -8,8 +8,8 @@ const HomePage = () => {
   const images = [
     "images/H2.JPG",
     "images/H1.png",
-    "images.v6.jpg",
-    "images.v11.jpg",
+    "images/v6.jpg",
+    "images/v11.jpg",
   ];
 
   // Swipe Handlers
