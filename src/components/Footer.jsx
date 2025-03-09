@@ -18,7 +18,7 @@ const Footer = () => {
             {/* ////////////////////////////Logo Section */}
             <div className="flex flex-col gap-3 items-center md:items-start">
               <img
-                src="images/01.png"
+                src="images/logo.png"
                 alt="logo"
                 className="h-24 ml-[20px] md:h-14 lg:h-16 xl:h-18 2xl:h-[140px] w-auto md:ml-[70px]"
                 width={110}

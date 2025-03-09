@@ -81,7 +81,7 @@ const Navbar = () => {
           {/* /////////////////////////////////StudioPick icon logo */}
           <div className="flex flex-col gap-3 items-center md:items-start">
             <img
-              src="images/01.png"
+              src="images/logo.png"
               alt="logo"
               className="h-16 ml-[20px] md:h-14 lg:h-16 xl:h-18 2xl:h-[80px] w-auto md:ml-[70px]"
             />
@@ -118,7 +118,7 @@ const Navbar = () => {
             {/* Logo Image */}
             <div className="flex flex-col gap-3 items-center md:items-start">
               <img
-                src="images/01.png"
+                src="images/logo.png"
                 alt="logo"
                 className="h-14 ml-[20px] md:h-14 lg:h-16 xl:h-18 2xl:h-[110px] w-auto md:ml-[70px]"
               />
